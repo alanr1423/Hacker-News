@@ -2,15 +2,9 @@
 
 const BASE_URL = "https://hack-or-snooze-v3.herokuapp.com";
 
-/******************************************************************************
- * Story: a single story in the system
- */
 
 class Story {
 
-  /** Make instance of Story from data object about story:
-   *   - {storyId, title, author, url, username, createdAt}
-   */
 
   constructor({ storyId, title, author, url, username, createdAt }) {
     this.storyId = storyId;
@@ -47,10 +41,7 @@ class StoryList {
    */
 
   static async getStories() {
-    // Note presence of `static` keyword: this indicates that getStories is
-    //  **not** an instance method. Rather, it is a method that is called on the
-    //  class directly. Why doesn't it make sense for getStories to be an
-    //  instance method?
+
 
     // query the /stories endpoint (no auth required)
     const response = await axios({
@@ -65,12 +56,7 @@ class StoryList {
     return new StoryList(stories);
   }
 
-  /** Adds story data to API, makes a Story instance, adds it to story list.
-   * - user - the current instance of User who will post the story
-   * - obj of {title, author, url}
-   *
-   * Returns the new Story instance
-   */
+
 
   async addStory(user, { title, author, url }) {
     const token = user.loginToken;
